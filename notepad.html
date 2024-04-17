@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Notepad</title>
+    <!-- Load CSS Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">NoteScribe</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="container2">
+        <h2>Online Notepad</h2>
+        <textarea id="notepad" placeholder="Start typing your notes here..." style="width: 100%; height: 300px;"></textarea>
+        <br>
+        <button id="saveNoteBtn" class="btn">Save Note</button>
+    </div>
+
+    <!-- Additional Content to be Stored in the Backend -->
+    <div class="container">
+        <h2>Contact Information</h2>
+        <form id="contactForm" action="/api/contact" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 NoteScribe. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for handling notepad and form submission -->
+    <script>
+        document.getElementById("saveNoteBtn").addEventListener("click", function() {
+            // Simulate saving note to backend
+            var noteContent = document.getElementById("notepad").value;
+            console.log("Note content to be saved:", noteContent);
+            // Send the note content to the backend using AJAX or fetch
+            // Example:
+            /*
+            fetch('/api/notes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: noteContent }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Note saved successfully');
+                } else {
+                    console.error('Error saving note');
+                }
+            })
+            .catch(error => {
+                console.error('Error saving note:', error);
+            });
+            */
+        });
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Simulate sending contact form data to backend
+            var formData = new FormData(this);
+            var formDataObject = {};
+            formData.forEach(function(value, key){
+                formDataObject[key] = value;
+            });
+            console.log("Contact form data to be sent:", formDataObject);
+            // Send the form data to the backend using AJAX or fetch
+            // Example:
+            /*
+            fetch('/api/contact', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Message sent successfully');
+                    // Reset the form
+                    document.getElementById("contactForm").reset();
+                } else {
+                    console.error('Error sending message');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+            });
+            */
+        });
+    </script>
+    <!-- JavaScript for handling notepad and form submission -->
+<script>
+    document.getElementById("saveNoteBtn").addEventListener("click", function() {
+        // Check if name, email, and message fields are filled out
+        var name = document.getElementById("name").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var message = document.getElementById("message").value.trim();
+
+        if (name === '' || email === '' || message === '') {
+            alert('Please fill out all required fields: Name, Email, Message');
+            return;
+        }
+
+        // If all fields are filled out, proceed to save the note
+        var noteContent = document.getElementById("notepad").value;
+        console.log("Note content to be saved:", noteContent);
+        // Send the note content to the backend using AJAX or fetch
+        // Example:
+        /*
+        fetch('/api/notes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                name: name,
+                email: email,
+                message: message,
+                content: noteContent 
+            }),
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Note saved successfully');
+            } else {
+                console.error('Error saving note');
+            }
+        })
+        .catch(error => {
+            console.error('Error saving note:', error);
+        });
+        */
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        // Simulate sending contact form data to backend
+        var formData = new FormData(this);
+        var formDataObject = {};
+        formData.forEach(function(value, key){
+            formDataObject[key] = value;
+        });
+        console.log("Contact form data to be sent:", formDataObject);
+        // Send the form data to the backend using AJAX or fetch
+        // Example:
+        /*
+        fetch('/api/contact', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Message sent successfully');
+                // Reset the form
+                document.getElementById("contactForm").reset();
+            } else {
+                console.error('Error sending message');
+            }
+        })
+        .catch(error => {
+            console.error('Error sending message:', error);
+        });
+        */
+    });
+</script>
+
+</body>
+</html>
